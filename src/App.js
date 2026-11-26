@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import Home from './components/pages/Home';
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import {ErrorBoundary} from 'react-error-boundary'
+
+// Import Pages
+import AddProduct from './components/pages/AddProduct';
+import Register from './components/pages/Register';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary fallback={<h1>Sorry Some error Occured Please Try Later </h1>}>
+    <Router>
+      <Routes >
+      <Route path='/' element={<Home/>} ></Route>  
+      <Route path='/add-product' element={<AddProduct/>}></Route>
+      <Route path='/signin' element={<Register/>}></Route>
+      </Routes>
+
+
+    </Router>
+    
+    </ErrorBoundary>
   );
 }
 
